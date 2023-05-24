@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Click the Button Game</title>
+    <style>
+      #game-button {
+        font-size: 24px;
+        padding: 10px 20px;
+      }
+      #game-info {
+        font-size: 18px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="game-button">Click me!</button>
+    <div id="game-info"></div>
+    <p>Check out <a href="https://ppoutdoor.com">ppoutdoor.com</a> for more outdoor fun!</p>
+
+    <script>
+      let score = 0;
+      let timeLeft = 10;
+      let gameButton = document.querySelector("#game-button");
+      let gameInfo = document.querySelector("#game-info");
+
+      gameButton.addEventListener("click", () => {
+        score++;
+        gameInfo.textContent = `Score: ${score} | Time left: ${timeLeft}`;
+      });
+
+      let gameInterval = setInterval(() => {
+        timeLeft--;
+        gameInfo.textContent = `Score: ${score} | Time left: ${timeLeft}`;
+
+        if (timeLeft === 0) {
+          clearInterval(gameInterval);
+          gameButton.disabled = true;
+          gameInfo.textContent = `Game over! Your final score is ${score}.`;
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
